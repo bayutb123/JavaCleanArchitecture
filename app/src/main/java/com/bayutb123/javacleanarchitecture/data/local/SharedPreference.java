@@ -17,13 +17,13 @@ public class SharedPreference {
         this.preferences = preferences;
     }
 
-    public void setData(String data) {
+    public void setData(int data) {
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("name", data);
+        editor.putInt("number", data);
         editor.apply();
     }
 
-    public String getName() {
-        return preferences.getString("name", "Not available");
+    public int getName() {
+        return preferences.getInt("number", 0);
     }
 }

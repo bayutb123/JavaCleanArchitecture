@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.bayutb123.javacleanarchitecture.Application;
+import com.bayutb123.javacleanarchitecture.data.local.SharedPreference;
+import com.bayutb123.javacleanarchitecture.data.repository.PrefRepositoryImpl;
+import com.bayutb123.javacleanarchitecture.domain.repository.PrefRepository;
+import com.bayutb123.javacleanarchitecture.domain.usecase.PrefUseCase;
 
 import dagger.Module;
 import dagger.Provides;
@@ -20,5 +24,19 @@ public class LocalModule {
            @ApplicationContext Context context
     ) {
         return context.getSharedPreferences("LocalPref", Context.MODE_PRIVATE);
+    }
+
+    @Provides
+    public static PrefRepository providePrefRepository(
+            SharedPreference sharedPreference
+    ) {
+        return new PrefRepositoryImpl(sharedPreference);
+    }
+
+    @Provides
+    public static PrefUseCase providePrefUseCase(
+            PrefRepository prefRepository
+    ) {
+        return new PrefUseCase(prefRepository);
     }
 }

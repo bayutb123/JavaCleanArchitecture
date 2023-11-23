@@ -1,17 +1,23 @@
 package com.bayutb123.javacleanarchitecture.ui.screen.home;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import com.bayutb123.javacleanarchitecture.R;
 import com.bayutb123.javacleanarchitecture.data.local.SharedPreference;
 import com.bayutb123.javacleanarchitecture.databinding.ActivityHomeBinding;
+import com.bayutb123.javacleanarchitecture.domain.model.User;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -21,31 +27,33 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class HomeActivity extends AppCompatActivity {
 
-    @Inject
-    SharedPreference sharedPreference;
+    HomeViewModel viewModel;
     ActivityHomeBinding binding;
-    int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        i = sharedPreference.getName();
-        initUI();
+        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        viewModel.userLiveData().observe(this, this::initUI);
     }
 
-    private void initUI() {
-        binding.textView.setText("Total = " + sharedPreference.getName());
-    }
-
-    private void refreshUI() {
-        binding.textView.setText("Total = " + sharedPreference.getName());
+    private void initUI(User user) {
+        binding.tvName.setText("Nama = " + user.getUserName());
+        binding.tvAge.setText("Umur = " + user.getUserAge());
+        Log.d("Test", "Observed");
     }
 
     public void changePref(View view) {
-        sharedPreference.setData(i + 1);
-        i = sharedPreference.getName();
-        refreshUI();
+        String name = Objects.requireNonNull(binding.etName.getText()).toString();
+        String _age = Objects.requireNonNull(binding.etAge.getText()).toString();
+        if (!_age.isEmpty()) {
+            int age = Integer.parseInt(_age);
+            User newUser = new User(name, age);
+            viewModel.setUser(newUser);
+        } else {
+            Toast.makeText(this, "Kolom Umur tidak boleh kosong", Toast.LENGTH_SHORT).show();
+        }
     }
 }

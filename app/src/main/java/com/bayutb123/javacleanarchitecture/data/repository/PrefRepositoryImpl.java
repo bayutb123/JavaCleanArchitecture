@@ -24,7 +24,7 @@ public class PrefRepositoryImpl implements PrefRepository {
     @Override
     public void setUser(User user) {
         preference.setUser(user);
-        userMutableLiveData.setValue(user);
+        userMutableLiveData.postValue(user);
     }
 
     @Override

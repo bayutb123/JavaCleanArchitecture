@@ -1,25 +1,18 @@
 package com.bayutb123.javacleanarchitecture.ui.screen.home;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import com.bayutb123.javacleanarchitecture.R;
-import com.bayutb123.javacleanarchitecture.data.local.SharedPreference;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.bayutb123.javacleanarchitecture.databinding.ActivityHomeBinding;
 import com.bayutb123.javacleanarchitecture.domain.model.User;
 
 import java.util.Objects;
-
-import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 @SuppressLint("SetTextI18n")

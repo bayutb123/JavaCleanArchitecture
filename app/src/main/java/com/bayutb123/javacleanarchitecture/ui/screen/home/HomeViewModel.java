@@ -1,7 +1,6 @@
 package com.bayutb123.javacleanarchitecture.ui.screen.home;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.bayutb123.javacleanarchitecture.domain.model.User;

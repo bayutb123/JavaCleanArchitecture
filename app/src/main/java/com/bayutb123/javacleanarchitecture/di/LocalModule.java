@@ -3,7 +3,6 @@ package com.bayutb123.javacleanarchitecture.di;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.bayutb123.javacleanarchitecture.Application;
 import com.bayutb123.javacleanarchitecture.data.local.SharedPreference;
 import com.bayutb123.javacleanarchitecture.data.repository.PrefRepositoryImpl;
 import com.bayutb123.javacleanarchitecture.domain.repository.PrefRepository;

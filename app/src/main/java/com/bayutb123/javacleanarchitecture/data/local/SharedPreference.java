@@ -3,11 +3,7 @@ package com.bayutb123.javacleanarchitecture.data.local;
 
 import android.content.SharedPreferences;
 
-import androidx.annotation.Nullable;
-
 import com.bayutb123.javacleanarchitecture.domain.model.User;
-
-import java.util.Set;
 
 import javax.inject.Inject;
 
